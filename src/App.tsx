@@ -1,32 +1,49 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import styles from './App.module.css'
+import poweredImage from './assets/powered.png'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [ heightField, setHeightField ] = useState<number>(0);
+  const [ weightField, setWeightField ] = useState<number>(0);
+
+  const handleCalculateButton = () => {
+      if(heightField && weightField) {
+
+      } else {
+        alert('Preencha todos os campos')
+      }
+  }
+
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className={styles.main}>
+        <header>
+          <div className={styles.headerContainer}>
+             <img src={poweredImage} alt="" width={150}/>
+          </div>          
+        </header>
+        <div className={styles.container}>
+          <div className={styles.leftSide}>
+              <h1>Calcule o seu IMC</h1>            
+              <p>IMC é a sigla para Índice de Massa Corpórea, parâmentro adotado pela Organização Mundial de saúde para calcular o pesso ideal de cada individuo.</p>
+
+              <input 
+                type="number"
+                placeholder='Digite a sua altura. Ex: 1.5 (em métros)' 
+                value={ heightField > 0 ? heightField : ''}
+                onChange={e => setHeightField(parseFloat(e.target.value))}
+              />
+                <input 
+                type="number"
+                placeholder='Digite o seu peso. Ex: 57.8 (em kg)' 
+                value={ weightField > 0 ? weightField : ''}
+                onChange={e => setWeightField(parseFloat(e.target.value))}
+              />
+              <button onClick={handleCalculateButton}>Calcular</button>
+
+          </div>
+          <div className={styles.rightSide}>...</div>
+        </div>
     </div>
   )
 }
