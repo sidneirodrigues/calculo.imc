@@ -125,7 +125,7 @@ header .headerContainer {
 
 }
 
-@media (max-width: 430px) {
+@media (max-width: 340px) {
     .container .rightSide .grid{
         grid-template-columns: 1fr;
     }     
